@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "542720158857",
+    "project_id": "testerxamarinapp",
+    "storage_bucket": "testerxamarinapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542720158857:android:592d677b7a0d7fe8842a58",
+        "android_client_info": {
+          "package_name": "com.somik.testerxamarinapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542720158857-1nhkc2ou30kn5d0kk1kn3qnb22sfrijf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVMVX_NEupdVgsZx0uWWxjorH5iB_RKVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "542720158857-1nhkc2ou30kn5d0kk1kn3qnb22sfrijf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
