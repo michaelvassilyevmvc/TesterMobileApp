@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Tester.WebApi.Service.Data;
 using Tester.WebApi.Service.Models;
-using Tester.WebApi.Service.PushNotificationServices;
-using System.Threading;
-using System.Threading.Tasks;
-using Tester.WebApi.Service.PushNotification;
+using Tester.WebApi.Service.Services;
 
 namespace Tester.WebApi.Service.Controllers
 {
@@ -32,7 +31,7 @@ namespace Tester.WebApi.Service.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            return Ok(users);
         }
 
         [HttpPost]
@@ -41,7 +40,7 @@ namespace Tester.WebApi.Service.Controllers
         {
             var phoneList = _context.Phones.Where(x => x.Number == phone.Number).ToList();
 
-            if(phoneList != null)
+            if (phoneList != null)
             {
                 return BadRequest("Phone is exist");
             }
@@ -54,14 +53,16 @@ namespace Tester.WebApi.Service.Controllers
 
         [HttpPost]
         [Route("send")]
-        public async Task<IActionResult> SendNotification(User user, NotificationModel notificationModel)
+        public async Task<IActionResult> SendNotification(NotificationModel notificationModel)
         {
-            if (user != null)
-            {
-                _context.Users.Add(user);
-                _context.SaveChanges();
-                long id = user.ID;
-            }
+            //if (user != null)
+            //{
+            //    _context.Users.Add(user);
+            //    _context.SaveChanges();
+            //    long id = user.ID;
+            //}
+
+            notificationModel.Body = (new Random()).Next(0, 999999).ToString();
 
             var result = await _notificationService.SendNotification(notificationModel);
 

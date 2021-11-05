@@ -9,6 +9,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
+
 namespace Tester.MobileApp
 {
     public partial class App : Application
@@ -43,22 +44,29 @@ namespace Tester.MobileApp
 
         private async Task Send(string token)
         {
-            var phone = new Phone
+            //var phone = new Phone
+            //{
+            //    ID = 0,
+            //    Number = "+77771085418",
+            //    Token = token
+            //};
+
+            NotificationModel notificationModel = new NotificationModel
             {
-                ID = 0,
-                Number = "+77771085418",
-                Token = token
+                DeviceId = token,
+                IsAndroiodDevice = true,
+
             };
 
-            string json = JsonConvert.SerializeObject(phone);
+            string json = JsonConvert.SerializeObject(notificationModel);
             HttpContent content = new StringContent(json);
 
             HttpClient client = new HttpClient();
             HttpRequestMessage request = new HttpRequestMessage();
-            request.RequestUri = new Uri("");
+            request.RequestUri = new Uri("http://localhost:63539/api/mobile/send");
             request.Method = HttpMethod.Post;
             request.Content = content;
-            //HttpRequestMessage response = client.SendAsync(request);
+            HttpResponseMessage response = await client.SendAsync(request);
 
         }
 

@@ -6,8 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Tester.WebApi.Service.Data;
-using Tester.WebApi.Service.PushNotification;
-using Tester.WebApi.Service.PushNotificationServices;
+using Tester.WebApi.Service.Models;
+using Tester.WebApi.Service.Services;
 
 namespace Tester.WebApi.Service
 {
@@ -26,16 +26,11 @@ namespace Tester.WebApi.Service
             services.AddDbContext<MainDbContext>();
             services.AddControllers();
             services.AddTransient<INotificationService, NotificationService>();
+            services.AddHttpClient<FcmSender>();
 
             var appSettingsSection = Configuration.GetSection("FcmNotification");
             services.Configure<FcmNotificationSetting>(appSettingsSection);
 
-            
-            services.AddHttpClient<FcmSender>();
-
-            
-
-            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tester.WebApi.Service", Version = "v1" });
